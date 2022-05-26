@@ -134,7 +134,7 @@
                 <div class="col-lg-7 mb-5 mb-lg-0">
                     <div class="contact-form">
                         <div id="success"></div>
-                        <form name="sentMessage" id="contactForm" novalidate="novalidate">
+                        <form name="contactForm" method="POST" id="contactForm" novalidate="novalidate">
                             <div class="form-row">
                                 <div class="col-sm-6 control-group">
                                     <input type="text" class="form-control p-4" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
@@ -165,6 +165,20 @@
         </div>
     </div>
     <!-- Contact End -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz1OWQkOSjtcGswP4-iRNrEvO-g1bS5O3t-tBHnE-PFQrr8vLYWoOcPudAU9vWSMcjPEQ/exec'
+            const form = document.forms['contactForm']
+            form.addEventListener('submit', e => {
+              e.preventDefault()
+              fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => alert("We will Get in touch with you soon!"))
+                .catch(error => console.error('Error!', error.message))
+                resetFunc()
+            })
+            function resetFunc(){
+                document.getElementById("contactForm    ").reset();
+            }
+    </script>
 
 
     <!-- Footer Start -->
